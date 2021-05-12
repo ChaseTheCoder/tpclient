@@ -29,7 +29,7 @@ export default function Create() {
   return (
     <>
       <h2>Create Student</h2>
-      <form className ={classes.root} noValidate autoComplete="off">
+      <form className={classes.root} noValidate autoComplete="off">
         <TextField id="outlined-basic" label="First Name" variant="outlined" value={student.firstName} onChange={(event) => {
           setStudent({ ...student, firstName: event.target.value })
         }}/>

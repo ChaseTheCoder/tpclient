@@ -24,6 +24,11 @@ export default function Create() {
   
   const createStudent = () => {
     axios.post('http://localhost:5000/students', student) //sends data from client (useState) to backend
+    .then(
+      window.location.reload()
+    ).catch(error => {
+        console.log(error)
+    })
   }
   return (
     <>

@@ -21,6 +21,13 @@ export default function Create() {
     lastName: '',
     grade: ''
   })
+
+  const updateStudent = e => {
+    setStudent({
+      ...student,
+      [e.target.name]: e.target.value
+    });
+  }
   
   const createStudent = () => {
     axios.post('http://localhost:5000/students', student) //sends data from client (useState) to backend
@@ -34,16 +41,29 @@ export default function Create() {
     <>
       <h2>Create Student</h2>
       <form className={classes.root} noValidate autoComplete="off">
-        <TextField id="outlined-basic" label="First Name" variant="outlined" value={student.firstName} onChange={(event) => {
-          setStudent({ ...student, firstName: event.target.value })
-        }}/>
-        <TextField id="outlined-basic" label="Last Name" variant="outlined" value={student.lastName} onChange={(event) => {
-          setStudent({ ...student, lastName: event.target.value })
-        }}/>
-        <TextField id="outlined-basic" label="Grade" variant="outlined" value={student.grade} onChange={(event) => {
-          setStudent({ ...student, grade: event.target.value })
-        }}/>
-
+        <TextField 
+          id="outlined-basic" 
+          name="firstName"
+          label="First Name" 
+          variant="outlined" 
+          value={student.firstName} onChange={updateStudent}
+        />
+        <TextField 
+          id="outlined-basic" 
+          name="lastName"
+          label="Last Name" 
+          variant="outlined" 
+          value={student.lastName} 
+          onChange={updateStudent}
+        />
+        <TextField 
+          id="outlined-basic" 
+          name="grade"
+          label="Grade" 
+          variant="outlined" 
+          value={student.grade} 
+          onChange={updateStudent}
+        />
         <Button variant="contained" color="primary" onClick={createStudent}>
         Create
         </Button>

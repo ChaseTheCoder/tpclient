@@ -16,11 +16,15 @@ const useStyles = makeStyles((theme) => ({
 export default function Create() {
   const classes = useStyles();
 
-  const [student, setStudent] = useState({ //useState, React Hook, updates the data in text fields on front end
+  const [student, setStudent] = useState({ //creating a pice of state and initializing it with an object
     firstName: '',
     lastName: '',
     grade: ''
   })
+
+  const printValues = () => {
+    console.log(student.firstName, student.lastName, student.grade);
+  };
 
   const updateStudent = e => {
     setStudent({
@@ -30,6 +34,7 @@ export default function Create() {
   }
   
   const createStudent = () => {
+    printValues();
     axios.post('http://localhost:5000/students', student) //sends data from client (useState) to backend
     .then(
       window.location.reload()

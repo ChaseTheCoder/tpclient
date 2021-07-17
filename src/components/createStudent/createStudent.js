@@ -22,11 +22,8 @@ export default function Create() {
     grade: ''
   })
 
-  const printValues = () => {
-    console.log(student.firstName, student.lastName, student.grade);
-  };
-
   const updateStudent = e => {
+    e.preventDefault();
     setStudent({
       ...student,
       [e.target.name]: e.target.value
@@ -34,11 +31,12 @@ export default function Create() {
   }
   
   const createStudent = () => {
-    printValues();
+    console.log(JSON.stringify(student));
     axios.post('http://localhost:5000/students', student) //sends data from client (useState) to backend
-    .then(
+    .then(result => {
+      console.log("result after post:" + JSON.stringify(result.data))
       window.location.reload()
-    ).catch(error => {
+    }).catch(error => {
         console.log(error)
     })
   }
@@ -51,7 +49,8 @@ export default function Create() {
           name="firstName"
           label="First Name" 
           variant="outlined" 
-          value={student.firstName} onChange={updateStudent}
+          value={student.firstName} 
+          onChange={updateStudent}
         />
         <TextField 
           id="outlined-basic" 
